@@ -55,6 +55,7 @@ def welcome():
     description1 = '''
     Available Routes:<br/>
     /api/v0.1/number_received/[uid]</br>
+    /api/v0.1/received_recent/<uid></br>
     /api/v0.1/number_sent/[uid]</br>
     /api/v0.1/between/[uid_from]/[uid_to]</br>
     /api/v0.1/received/[uid]</br>
@@ -64,6 +65,10 @@ def welcome():
     replace [uid] with uid of forum member, must be an integer</br>
     returns:</br> Total Received Merit:  the total merit the uid has received</br>
     uid: the uid you are querying</br></br>
+    /api/v0.1/received_recent/[uid]</br>
+    replace [uid] with uid of forum member, must be an integer</br>
+    returns:</br> Recent Received Merit:  the total merit the uid has received in the last 120 days</br>
+    uid: the uid you are querying</br></br>    
     /api/v0.1/number_sent/[uid]</br>
     replace [uid] with uid of forum member, must be an integer</br>
     returns:</br> Total Sent Merit:  the total merit the uid has sent</br>
