@@ -141,7 +141,7 @@ def number_received(uid):
         value1 = {'Error': f'{uid} is not an Integer. Please reformat into an Integer and try again'}
         return jsonify(value1)
     except TypeError:
-        no_merit = {"Total Received Merit":0, "uid":uid1}
+        no_merit = {"Total_Received_Merit":0, "uid":uid1}
         return jsonify(no_merit)
 
 
@@ -161,7 +161,7 @@ def number_sent(uid):
         response = int(response[0])
         response_list = []
         merit_sent = {}
-        merit_sent['Total Sent Merit'] = response
+        merit_sent['Total_Sent_Merit'] = response
         merit_sent['uid'] = uid1
         response_list.append(merit_sent)
         return jsonify(response_list)
@@ -169,7 +169,7 @@ def number_sent(uid):
         value1 = {'Error': f'{uid} is not an Integer. Please reformat into an Integer and try again'}
         return jsonify(value1)
     except TypeError:
-        no_merit = {"Total Sent Merit":0, "uid":uid1}
+        no_merit = {"Total_Sent_Merit":0, "uid":uid1}
         return jsonify(no_merit)
 
 
@@ -191,9 +191,9 @@ def between(fromm, to):
         response = int(response[0])
         response_list = []
         merit_sent = {}
-        merit_sent['Total Received Merit'] = response
-        merit_sent['Sent from'] = from1
-        merit_sent['Sent to'] = to1
+        merit_sent['Total_Received_Merit'] = response
+        merit_sent['Sent_from'] = from1
+        merit_sent['Sent_to'] = to1
         
         response3 = []
         for merit_number, message_id, time in response2:
@@ -203,8 +203,8 @@ def between(fromm, to):
             time_month = datetime.utcfromtimestamp(int(time)).strftime('%B') #month
             response2_dict['time'] = time1 
             response2_dict['Month'] = time_month
-            response2_dict['Day of Week'] = time_day
-            response2_dict['number of merit'] = merit_number
+            response2_dict['Day_of_Week'] = time_day
+            response2_dict['number_of_merit'] = merit_number
             response2_dict['Post'] = message_id
             response3.append(response2_dict)
         merit_sent['Transactions'] = response3
@@ -214,7 +214,7 @@ def between(fromm, to):
         value1 = {'Error': f'{fromm} or {to} is not an Integer. Please reformat into an Integer and try again'}
         return jsonify(value1)
     except TypeError:
-        no_merit = {"Total Received Merit":0, "Sent from":from1, 'Sent to': to1,
+        no_merit = {"Total_Received Merit":0, "Sent_from":from1, 'Sent_to': to1,
                     'Transactions':[{'time': '2009-01-08 08:21:00','Month': 
                                      'January','Day of Week': 'Thursday','number of merit': 0,
                                      'Post': '9999999.msg999999999'}] }
@@ -239,8 +239,8 @@ def transactions_received(to):
         response = int(response[0])
         response_list = []
         merit_sent = {}
-        merit_sent['Total Received Merit'] = response
-        merit_sent['Sent to'] = to1
+        merit_sent['Total_Received_Merit'] = response
+        merit_sent['Sent_to'] = to1
         
         response3 = []
         for received_from, merit_number, message_id, time in response2:
@@ -250,10 +250,10 @@ def transactions_received(to):
             time_month = datetime.utcfromtimestamp(int(time)).strftime('%B') #month
             response2_dict['time'] = time1 
             response2_dict['Month'] = time_month
-            response2_dict['Day of Week'] = time_day
-            response2_dict['number of merit'] = merit_number
+            response2_dict['Day_of_Week'] = time_day
+            response2_dict['number_of_merit'] = merit_number
             response2_dict['Post'] = message_id
-            response2_dict['Sent from'] = received_from
+            response2_dict['Sent_from'] = received_from
             response3.append(response2_dict)
         merit_sent['Transactions'] = response3
         response_list.append(merit_sent) #this might need to be moved to the end
@@ -262,9 +262,9 @@ def transactions_received(to):
         value1 = {'Error': f'{to} is not an Integer. Please reformat into an Integer and try again'}
         return jsonify(value1)
     except TypeError:
-        no_merit = {"Total Received Merit":0, 'Sent to': to1,
+        no_merit = {"Total_Received_Merit":0, 'Sent to': to1,
                     'Transactions':[{'time': '2009-01-08 08:21:00','Month': 
-                                     'January','Day of Week': 'Thursday','number of merit': 0,
+                                     'January','Day_of_Week': 'Thursday','number_of_merit': 0,
                                      'Post': '9999999.msg999999999'}] }
         return jsonify(no_merit)
     
@@ -287,8 +287,8 @@ def transactions_sent(fromm):
         response = int(response[0])
         response_list = []
         merit_sent = {}
-        merit_sent['Total Sent Merit'] = response
-        merit_sent['Sent from'] = from1
+        merit_sent['Total_Sent_Merit'] = response
+        merit_sent['Sent_from'] = from1
         
         response3 = []
         for sent_to, merit_number, message_id, time in response2:
@@ -311,9 +311,9 @@ def transactions_sent(fromm):
         return jsonify(value1)
     except TypeError:
         #todo - fix dictionary to match normal function output
-        no_merit = {"Total Received Merit":0, "Sent from":from1, 'Sent to': 2,
+        no_merit = {"Total_Received_Merit":0, "Sent_from":from1, 'Sent_to': 2,
                     'Transactions':[{'time': '2009-01-08 08:21:00','Month': 
-                                     'January','Day of Week': 'Thursday','number of merit': 0,
+                                     'January','Day of Week': 'Thursday','number_of_merit': 0,
                                      'Post': '9999999.msg999999999'}] }
         return jsonify(no_merit)
     
@@ -338,7 +338,7 @@ def recent_merit(uid):
         response = int(response[0])
         response_list = []
         merit_received = {}
-        merit_received['Recent Received Merit'] = response
+        merit_received['Recent_Received_Merit'] = response
         merit_received['uid'] = uid1
         response_list.append(merit_received)
         return jsonify(response_list) #jsonify
@@ -346,7 +346,7 @@ def recent_merit(uid):
         value1 = {'Error': f'{uid} is not an Integer. Please reformat into an Integer and try again'}
         return jsonify(value1)
     except TypeError:
-        no_merit = {"Recent Received Merit":0, "uid":uid1}
+        no_merit = {"Recent_Received_Merit":0, "uid":uid1}
         return jsonify(no_merit)
 
 
